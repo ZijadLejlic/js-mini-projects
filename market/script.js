@@ -1,0 +1,1 @@
+alert('Fajl se ucitao');
