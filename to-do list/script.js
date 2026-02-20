@@ -1,63 +1,42 @@
-let allTotal = 0;
+//selectiong elements
+const input = document.querySelector(".text-todo");
+const button = document.querySelector(".main-cta");
+const todoList = document.querySelector(".todo-list");
 
-function addToCart(element) {
+//click on btn
+button.addEventListener("click", function() {
 
-    let mainEl = element.closest('.single-item');
-    let price = mainEl.querySelector('.price').innerText;
-    let name = mainEl.querySelector('h3').innerText;
-    let quantity = mainEl.querySelector('input').value;
-    let cartItems = document.querySelector('.cart-items');
+    const text = input.value;
 
-    console.log(typeof(quantity));
-
-    if(parseInt(quantity) > 0) {
-
-        price = price.substring(1);
-        price = parseInt(price);
-
-        let total = price * parseInt(quantity);
-
-        allTotal += total;
-
-        cartItems.innerHTML += `<div class = "cart-single-item">
-                                
-                                    <h3>${name}</h3>
-                                    <p>$${price} x ${quantity} = $<span>${total}</span></p>
-                                    <button onClick="removeFromCart(this)" class = "remove-item">Ukloni</button>
-
-                                </div>`;
-
-        document.querySelector('.total').innerHTML = `Total: $${allTotal}`
-
-        element.innerHTML = 'Dodato.';
-        element.setAttribute('disabled', 'true');
-    } else {
-        alert('Odaberi kolicinu!')
+    if(text.trim() === "") {
+        return;
     }
 
-}
 
-function removeFromCart(element) {
-    let mainEl = element.closest('.cart-single-item');
-    let price = mainEl.querySelector('p span').innerText;
-    let name = mainEl.querySelector('h3').innerText;
-    let vegetables = document.querySelectorAll('.single-item');
+    //main div
+    const newTodo = document.createElement("div");
+    newTodo.classList.add('todo-item');
 
-    price = parseInt(price);
-    allTotal -= price;
+    //span for text
+    const todoText = document.createElement('span');
+    todoText.textContent = text;
 
-    document.querySelector('.total').innerHTML = `Total: $${allTotal}`
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'x';
+    deleteBtn.classList.add('delete-btn');
 
-    mainEl.remove();
-
-    vegetables.forEach(function (vege) {
-        let itemName = vege.querySelector('.si-content h3').innerText;
-        
-        if(itemName === name) {
-            vege.querySelector('.actions input').value = 0;
-            vege.querySelector('.actions button').removeAttribute('disabled');
-            vege.querySelector('.actions button').innerText = 'Dodaj';
-        }
+    deleteBtn.addEventListener('click', function() {
+        newTodo.remove();
     });
 
-}
+    //add text and btn into div
+    newTodo.appendChild(todoText);
+    newTodo.appendChild(deleteBtn);
+
+    //add to list
+    todoList.appendChild(newTodo);
+
+    //clean input field
+    input.value="";
+
+});

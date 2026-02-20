@@ -1,73 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pijaca</title>
+	<title>TODO</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-	<h1>Pijaca</h1>
+	<h1>To Do List</h1>
 
 	<div class="container">
-		<div class="items">
-			<input type="text">
+		<div class="input-wrapper">
+			<input type="text" class="text-todo">
 		</div>
-		<!-- <div class="items">
-			<h2>Povrće</h2>
-
-			<div class="single-item">
-				<img src="img/potato.png">
-				<div class="si-content">
-					<h3>Krompir</h3>
-					<p class="price">$10</p>
-				</div>
-				<div class="actions">
-					<input type="number" name="quantity" value="0" min="0">
-					<button onclick="addToCart(this)">Dodaj</button>
-				</div>
-			</div>
-
-			<div class="single-item">
-				<img src="img/tomato.png">
-				<div class="si-content">
-					<h3>Paradajz</h3>
-					<p class="price">$20</p>
-				</div>
-				<div class="actions">
-					<input type="number" name="quantity" value="0" min="0">
-					<button onclick="addToCart(this)">Dodaj</button>
-				</div>
-			</div>
-
-			<div class="single-item">
-				<img src="img/carrot.png">
-				<div class="si-content">
-					<h3>Šargarepa</h3>
-					<p class="price">$30</p>
-				</div>
-				<div class="actions">
-					<input type="number" name="quantity" value="0" min="0">
-					<button onclick="addToCart(this)">Dodaj</button>
-				</div>
-			</div>
-		</div> -->
-
-		<div class="cart">
-
-			<button onClick="addToList()">Add To List</button>
-			<!-- <h2>Korpa</h2>
-			
-			<div class="cart-items"></div>
-
-			<div class="total"></div> -->
+		<div class="button-wrapper">
+			<button class="main-cta">Add To List</button>
 		</div>
 	</div>
 
-	<div class="list-under">
-		<div class="container">
-			<h2>Lista</h2>
-			<div class="list-items"></div>
-		</div>
+	<div class="list-preview">
+		<div class="todo-list"></div>
 	</div>
 
 	<script src="script.js"></script>
