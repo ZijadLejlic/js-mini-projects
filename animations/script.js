@@ -30,14 +30,14 @@ let interval = setInterval(() => {
 
 }, 70);
 
-let border = document.querySelector('border-line');
+let border = document.querySelector('.border-line');
 let animationWidth = 0;
 
 window.onscroll = () => {
 
     if(this.oldScroll > this.scrollY) {
-        animationWidth -= 1.5;
-    } else animationWidth += 1.5;
+        animationWidth -= 0.8;
+    } else animationWidth += 0.8;
     
     if(animationWidth >= 100) {
         animationWidth = 100;
@@ -53,12 +53,19 @@ window.onscroll = () => {
 
     this.oldScroll = this.scrollY;
 
+    imageAnimation();
+}
+
+const imageAnimation = () => {
     let sectionForAnimation = document.querySelector('.section2 .images');
     let sectionPosition = sectionForAnimation.getBoundingClientRect().top;
+    let screenPosition = window.innerHeight / 1.4;
 
     let leftImage = document.querySelector('.slideFromLeft');
     let rightImage = document.querySelector('.slideFromRight');
 
-    leftImage.classList.add('animated');
-    rightImageImage.classList.add('animated');
+    if(sectionPosition < screenPosition) {
+        leftImage.classList.add('animated');
+        rightImage.classList.add('animated');
+    }
 }
