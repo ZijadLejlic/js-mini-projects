@@ -42,8 +42,46 @@ class Validator {
 
         if(elFields[fieldName].email) {
             if(!this.validateEmail(fieldValue)) {
-
+                this.errors[fieldName].push('Neispravna email adresa.');
             }
+        }
+
+        if(fieldValue.length < elFields[fieldName].minlength || fieldValue.length > elFields[fieldName].maxlength) {
+            this.errors[fieldName].push(`Polje mora imati minimalno ${elFields[fieldName].minlength} i maksimalno ${elFields[fieldName].maxlength} karaktera.`);
+        }
+
+        if(elFields[fieldName].matching) {
+            let matchingEl = document.querySelector(`input[name="${elFields[fieldName].matching}"]`);
+
+            if(fieldValue !== matchingEl.value) {
+                this.errors[fieldName].push('Lozinke se ne poklapaju.')
+            }
+
+            if(this.errors[fieldName].length === 0) {
+                this.errors[fieldName] = [];
+                this.errors[elFields[fieldName].matching] = [];
+            }
+        }
+
+        this.populateErrors(this.errors);
+    }
+
+    populateErrors(errors) {
+        for(const elem of document.querySelectorAll('ul')) {
+            elem.remove();
+        }
+
+        for(let key of Object.keys(errors)) {
+            let parentElement = document.querySelector(`input[name="${key}"]`).parentElement;
+            let errorsElement = document.createElement('ul');
+            parentElement.appendChild(errorsElement);
+
+            errors[key].forEach(error => {
+                let li = document.createElement('li');
+                li.innerText = error;
+
+                errorsElement.appendChild(li);
+            });
         }
     }
 
