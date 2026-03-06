@@ -7,3 +7,19 @@ xhttp.onreadystatechange = function() {
 xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
 xhttp.send(); */
 
+document.querySelector('#fetchBtn').addEventListener('click', e => {
+    e.preventDefault();
+
+    let id = document.querySelector('#userID').value;
+
+    let r = fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => response.json()).then(data => {
+        console.log(data);
+    }).catch(error => {
+        alert("An error occurred: " + error);
+    });
+
+
+});
+
+
