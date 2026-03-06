@@ -12,9 +12,11 @@ document.querySelector('#fetchBtn').addEventListener('click', e => {
 
     let id = document.querySelector('#userID').value;
 
-    let r = fetch("https://jsonplaceholder.typicode.com/posts/1")
+    let r = fetch("https://jsonplaceholder.typicode.com/posts/1/" + id)
     .then(response => response.json()).then(data => {
         console.log(data);
+        let posts = document.querySelector('#posts');
+        posts.innerHTML = `<h2>${data.title}</h2><p>${data.body}</p>`;
     }).catch(error => {
         alert("An error occurred: " + error);
     });
